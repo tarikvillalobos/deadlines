@@ -1,5 +1,6 @@
 package deadlines.app
 
+import deadlines.app.plugins.configureErrorHandling
 import deadlines.app.plugins.configureSerialization
 import deadlines.app.routes.configureRouting
 import io.ktor.server.application.Application
@@ -15,5 +16,6 @@ fun main() {
 
 fun Application.module() {
     configureSerialization()
+    configureErrorHandling()
     configureRouting()
 }
