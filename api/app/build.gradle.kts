@@ -18,6 +18,7 @@ dependencies {
     implementation(libs.koin.ktor)
     implementation(libs.koin.logger.slf4j)
     testImplementation(libs.ktor.server.test.host)
+    testImplementation(libs.ktor.client.content.negotiation)
     testImplementation(libs.bundles.kotest)
     testImplementation(libs.konsist)
     testImplementation(libs.bundles.testcontainers)

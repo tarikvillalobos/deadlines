@@ -8,6 +8,7 @@ fun Application.configureRouting() {
     routing {
         route("/api") {
             healthRoutes()
+            authRoutes()
         }
     }
 }
