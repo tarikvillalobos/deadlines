@@ -10,6 +10,10 @@ flyway = "13.4.0"
 hikari = "7.1.0"
 postgresql = "42.7.13"
 testcontainers = "1.21.4"
+koin = "4.2.2"
+password4j = "1.8.4"
+uuid-generator = "5.2.0"
+kotlinx-datetime = "0.7.0"
 ktlint-plugin = "14.2.0"
 
 [libraries]
@@ -33,6 +37,12 @@ hikaricp = { module = "com.zaxxer:HikariCP", version.ref = "hikari" }
 postgresql-driver = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
 testcontainers-postgresql = { module = "org.testcontainers:postgresql", version.ref = "testcontainers" }
 testcontainers-junit = { module = "org.testcontainers:junit-jupiter", version.ref = "testcontainers" }
+koin-ktor = { module = "io.insert-koin:koin-ktor", version.ref = "koin" }
+koin-logger-slf4j = { module = "io.insert-koin:koin-logger-slf4j", version.ref = "koin" }
+koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
+password4j = { module = "com.password4j:password4j", version.ref = "password4j" }
+uuid-generator = { module = "com.fasterxml.uuid:java-uuid-generator", version.ref = "uuid-generator" }
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
 
 [bundles]
 kotest = ["kotest-runner-junit5", "kotest-assertions-core"]
