@@ -1,12 +1,12 @@
 package deadlines.platform.accounts.domain
 
-import java.util.UUID
+import kotlin.uuid.Uuid
 
 enum class TenantUserStatus { ACTIVE, INACTIVE }
 
 data class TenantUser(
-    val id: UUID,
-    val tenantId: UUID,
-    val userId: UUID,
+    val id: Uuid,
+    val tenantId: Uuid,
+    val userId: Uuid,
     val status: TenantUserStatus,
 )

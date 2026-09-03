@@ -1,10 +1,10 @@
 package deadlines.platform.access.domain
 
-import java.util.UUID
+import kotlin.uuid.Uuid
 
 data class Role(
-    val id: UUID,
-    val tenantId: UUID,
+    val id: Uuid,
+    val tenantId: Uuid,
     val key: String,
     val name: String,
     val isSystem: Boolean,

@@ -24,9 +24,9 @@ import deadlines.platform.identity.domain.RawPassword
 import deadlines.platform.identity.domain.User
 import deadlines.platform.identity.domain.UserRepository
 import deadlines.platform.persistence.application.TransactionRunner
-import kotlinx.datetime.Clock
-import java.util.UUID
+import kotlin.time.Clock
 import kotlin.time.Duration.Companion.days
+import kotlin.uuid.Uuid
 
 private const val TRIAL_DAYS = 14
 private const val MAX_SLUG_ATTEMPTS = 50
@@ -127,7 +127,7 @@ class SignUp(
         return base.withSuffix(Ids.next().hashCode().and(Int.MAX_VALUE))
     }
 
-    private suspend fun createSystemRoles(tenantId: UUID, ownerTenantUserId: UUID) {
+    private suspend fun createSystemRoles(tenantId: Uuid, ownerTenantUserId: Uuid) {
         val catalogue = permissions.all().map { GrantedPermission(it.key, Scope.ALL) }
         SystemRole.entries.forEach { systemRole ->
             val role =

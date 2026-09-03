@@ -3,11 +3,12 @@ package deadlines.core.id
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.collections.shouldBeSorted
 import io.kotest.matchers.shouldBe
+import kotlin.uuid.toJavaUuid
 
 class IdsTest :
     StringSpec({
         "generates version 7 identifiers" {
-            Ids.next().version() shouldBe 7
+            Ids.next().toJavaUuid().version() shouldBe 7
         }
 
         "generates unique identifiers" {

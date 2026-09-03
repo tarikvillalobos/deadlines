@@ -16,12 +16,12 @@ import deadlines.platform.identity.domain.Email
 import deadlines.platform.identity.domain.User
 import deadlines.platform.identity.domain.UserRepository
 import deadlines.platform.persistence.application.TransactionRunner
-import java.util.UUID
+import kotlin.uuid.Uuid
 
 class InMemoryTenantRepository(var failOnCreate: Boolean = false) : TenantRepository {
     val saved = mutableListOf<Tenant>()
 
-    override suspend fun findById(id: UUID) = saved.firstOrNull { it.id == id }
+    override suspend fun findById(id: Uuid) = saved.firstOrNull { it.id == id }
 
     override suspend fun existsBySlug(slug: Slug) = saved.any { it.slug.value == slug.value }
 
@@ -35,7 +35,7 @@ class InMemoryTenantRepository(var failOnCreate: Boolean = false) : TenantReposi
 class InMemoryTenantUserRepository : TenantUserRepository {
     val saved = mutableListOf<TenantUser>()
 
-    override suspend fun find(tenantId: UUID, userId: UUID) =
+    override suspend fun find(tenantId: Uuid, userId: Uuid) =
         saved.firstOrNull { it.tenantId == tenantId && it.userId == userId }
 
     override suspend fun create(tenantUser: TenantUser): TenantUser {
@@ -49,7 +49,7 @@ class InMemoryUserRepository : UserRepository {
 
     override suspend fun findByEmail(email: Email) = saved.firstOrNull { it.email.value == email.value }
 
-    override suspend fun findById(id: UUID) = saved.firstOrNull { it.id == id }
+    override suspend fun findById(id: Uuid) = saved.firstOrNull { it.id == id }
 
     override suspend fun create(user: User): User {
         saved += user
@@ -59,10 +59,10 @@ class InMemoryUserRepository : UserRepository {
 
 class InMemoryRoleRepository : RoleRepository {
     val saved = mutableListOf<Role>()
-    val grants = mutableMapOf<UUID, List<GrantedPermission>>()
-    val assignments = mutableListOf<Pair<UUID, UUID>>()
+    val grants = mutableMapOf<Uuid, List<GrantedPermission>>()
+    val assignments = mutableListOf<Pair<Uuid, Uuid>>()
 
-    override suspend fun findByKey(tenantId: UUID, key: String) =
+    override suspend fun findByKey(tenantId: Uuid, key: String) =
         saved.firstOrNull { it.tenantId == tenantId && it.key == key }
 
     override suspend fun create(role: Role): Role {
@@ -70,11 +70,11 @@ class InMemoryRoleRepository : RoleRepository {
         return role
     }
 
-    override suspend fun grant(roleId: UUID, permissions: List<GrantedPermission>) {
+    override suspend fun grant(roleId: Uuid, permissions: List<GrantedPermission>) {
         grants[roleId] = permissions
     }
 
-    override suspend fun assign(tenantUserId: UUID, roleId: UUID) {
+    override suspend fun assign(tenantUserId: Uuid, roleId: Uuid) {
         assignments += tenantUserId to roleId
     }
 }
@@ -86,7 +86,7 @@ class InMemoryPermissionRepository(private val catalogue: List<Permission>) : Pe
 class InMemorySubscriptionRepository : SubscriptionRepository {
     val saved = mutableListOf<Subscription>()
 
-    override suspend fun findByTenant(tenantId: UUID) = saved.firstOrNull { it.tenantId == tenantId }
+    override suspend fun findByTenant(tenantId: Uuid) = saved.firstOrNull { it.tenantId == tenantId }
 
     override suspend fun create(subscription: Subscription): Subscription {
         saved += subscription

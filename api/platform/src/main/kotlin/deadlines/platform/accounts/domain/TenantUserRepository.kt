@@ -1,9 +1,9 @@
 package deadlines.platform.accounts.domain
 
-import java.util.UUID
+import kotlin.uuid.Uuid
 
 interface TenantUserRepository {
-    suspend fun find(tenantId: UUID, userId: UUID): TenantUser?
+    suspend fun find(tenantId: Uuid, userId: Uuid): TenantUser?
 
     suspend fun create(tenantUser: TenantUser): TenantUser
 }
