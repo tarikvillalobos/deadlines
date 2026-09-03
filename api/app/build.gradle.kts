@@ -14,7 +14,9 @@ dependencies {
     implementation(project(":domains"))
     implementation(libs.bundles.ktor.server)
     implementation(libs.logback.classic)
+    implementation(libs.bundles.persistence)
     testImplementation(libs.ktor.server.test.host)
     testImplementation(libs.bundles.kotest)
     testImplementation(libs.konsist)
+    testImplementation(libs.bundles.testcontainers)
 }

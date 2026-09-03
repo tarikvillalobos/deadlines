@@ -1,6 +1,7 @@
 package deadlines.app.plugins
 
 import deadlines.app.module
+import deadlines.app.support.fakeDependencies
 import deadlines.core.error.AppError
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
@@ -19,7 +20,7 @@ class ErrorHandlingTest :
         "AppError becomes a problem+json response with its status" {
             testApplication {
                 application {
-                    module()
+                    module(fakeDependencies())
                     routing { get("/missing") { throw AppError.NotFound("Lead 42 does not exist") } }
                 }
 
@@ -35,7 +36,7 @@ class ErrorHandlingTest :
         "validation errors list every field violation" {
             testApplication {
                 application {
-                    module()
+                    module(fakeDependencies())
                     routing {
                         get("/invalid") {
                             throw AppError.Validation(
