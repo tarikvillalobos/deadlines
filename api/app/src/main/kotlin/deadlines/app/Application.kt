@@ -1,5 +1,6 @@
 package deadlines.app
 
+import deadlines.app.plugins.configureApiVersioning
 import deadlines.app.plugins.configureErrorHandling
 import deadlines.app.plugins.configureSerialization
 import deadlines.app.routes.configureRouting
@@ -17,5 +18,6 @@ fun main() {
 fun Application.module() {
     configureSerialization()
     configureErrorHandling()
+    configureApiVersioning()
     configureRouting()
 }
