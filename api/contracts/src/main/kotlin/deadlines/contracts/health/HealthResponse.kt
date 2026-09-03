@@ -3,4 +3,4 @@ package deadlines.contracts.health
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class HealthResponse(val status: String)
+data class HealthResponse(val status: String, val database: String)

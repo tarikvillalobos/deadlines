@@ -12,12 +12,12 @@ private const val DEFAULT_PORT = 8080
 
 fun main() {
     val port = System.getenv("PORT")?.toIntOrNull() ?: DEFAULT_PORT
-    embeddedServer(Netty, port = port, module = Application::module).start(wait = true)
+    embeddedServer(Netty, port = port) { module(AppDependencies.production()) }.start(wait = true)
 }
 
-fun Application.module() {
+fun Application.module(dependencies: AppDependencies) {
     configureSerialization()
     configureErrorHandling()
     configureApiVersioning()
-    configureRouting()
+    configureRouting(dependencies)
 }
