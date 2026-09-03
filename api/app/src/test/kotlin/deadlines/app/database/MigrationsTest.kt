@@ -29,7 +29,7 @@ class MigrationsTest :
 
         "GET /api/health reports the real database as reachable" {
             testApplication {
-                application { module(dependencies) }
+                application { module(modules) }
 
                 val response = client.get("/api/health")
 
