@@ -1,9 +1,9 @@
 package deadlines.platform.billing.domain
 
-import java.util.UUID
+import kotlin.uuid.Uuid
 
 interface SubscriptionRepository {
-    suspend fun findByTenant(tenantId: UUID): Subscription?
+    suspend fun findByTenant(tenantId: Uuid): Subscription?
 
     suspend fun create(subscription: Subscription): Subscription
 }

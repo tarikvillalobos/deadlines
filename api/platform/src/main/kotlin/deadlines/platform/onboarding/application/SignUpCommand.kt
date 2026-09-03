@@ -1,6 +1,6 @@
 package deadlines.platform.onboarding.application
 
-import java.util.UUID
+import kotlin.uuid.Uuid
 
 data class SignUpCommand(
     val companyName: String,
@@ -10,8 +10,8 @@ data class SignUpCommand(
 )
 
 data class SignUpResult(
-    val tenantId: UUID,
+    val tenantId: Uuid,
     val tenantSlug: String,
-    val userId: UUID,
+    val userId: Uuid,
     val email: String,
 )
