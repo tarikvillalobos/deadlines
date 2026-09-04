@@ -1,10 +1,12 @@
 package deadlines.app.support
 
-import deadlines.app.AppDependencies
 import deadlines.app.database.openDatabase
+import deadlines.app.di.persistenceModule
+import deadlines.app.di.platformModule
 import deadlines.platform.persistence.application.DatabaseSettings
 import deadlines.platform.persistence.infrastructure.DatabaseHandle
 import io.kotest.core.spec.style.StringSpec
+import org.koin.core.module.Module
 import org.testcontainers.containers.PostgreSQLContainer
 import java.sql.ResultSet
 
@@ -28,7 +30,7 @@ private val handle: DatabaseHandle by lazy {
 /** Base class for tests that need a real PostgreSQL instance with every migration applied. */
 abstract class IntegrationSpec(body: IntegrationSpec.() -> Unit) : StringSpec() {
     val database get() = handle
-    val dependencies: AppDependencies get() = AppDependencies.from(handle)
+    val modules: List<Module> get() = listOf(persistenceModule(handle), platformModule)
 
     fun <T> queryRows(sql: String, readRow: (ResultSet) -> T): List<T> =
         handle.dataSource.connection.use { connection ->
