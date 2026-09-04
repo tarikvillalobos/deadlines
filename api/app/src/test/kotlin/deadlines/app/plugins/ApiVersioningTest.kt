@@ -1,7 +1,7 @@
 package deadlines.app.plugins
 
 import deadlines.app.module
-import deadlines.app.support.fakeDependencies
+import deadlines.app.support.fakeModules
 import deadlines.contracts.version.ApiVersions
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
@@ -18,7 +18,7 @@ class ApiVersioningTest :
     StringSpec({
         "requests without the header use the latest version" {
             testApplication {
-                application { module(fakeDependencies()) }
+                application { module(fakeModules()) }
 
                 val response = client.get("/api/health")
 
@@ -29,7 +29,7 @@ class ApiVersioningTest :
 
         "requests pinning a known version get it echoed back" {
             testApplication {
-                application { module(fakeDependencies()) }
+                application { module(fakeModules()) }
 
                 val response = client.get("/api/health") { header(ApiVersions.HEADER, "1") }
 
@@ -40,7 +40,7 @@ class ApiVersioningTest :
 
         "requests pinning an unknown version are rejected" {
             testApplication {
-                application { module(fakeDependencies()) }
+                application { module(fakeModules()) }
 
                 val response = client.get("/api/health") { header(ApiVersions.HEADER, "99") }
 
